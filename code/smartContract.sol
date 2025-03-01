@@ -4,12 +4,18 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 
+
+// Custom error handling
 error ErrorOwnerOnlyFunction();
 error InvalidSignersCount();
 error InvalidSignature();
 error TransactionAlreadyExecuted();
 error InsufficientConfirmations();
 error InvalidTransaction();
+
+
+// Enum for transaction type
+enum TransactionType { MINT, BURN, TRANSFER }
 
 contract FourtyTwoToTheMoonMultisig is ERC20, ERC20Permit {
     address public owner;
@@ -20,11 +26,12 @@ contract FourtyTwoToTheMoonMultisig is ERC20, ERC20Permit {
     address[] public signers;
     mapping(address => bool) public authSigners;
     
-    // Transaction structure
+    // Transaction structure : We need the sender, the receiver, the amount of token, the type of transaction, and a mapping to store signers and their number
     struct Transaction {
         address to;
+        address from;
         uint256 value;
-        bytes data;
+        TransactionType kind;
         bool executed;
         mapping(address => bool) confirmations;
         uint256 numConfirmations;
@@ -32,11 +39,14 @@ contract FourtyTwoToTheMoonMultisig is ERC20, ERC20Permit {
     
     Transaction[] public waitingTransactions;
     
-    // Events
+    // Events (for logs on bscscan)
     event TransactionSubmitted(uint256 indexed txIndex, address indexed from, address indexed to, uint256 value);
     event TransactionConfirmed(uint256 indexed txIndex, address indexed signer);
     event TransactionExecuted(uint256 indexed txIndex);
+    event TransactionExecutionFailed(uint256 indexed txIndex, bytes returnData);
     
+    
+    // Modifiers for access control
     modifier onlyOwner() {
         if (msg.sender != owner)
             revert ErrorOwnerOnlyFunction();
@@ -47,7 +57,7 @@ contract FourtyTwoToTheMoonMultisig is ERC20, ERC20Permit {
         require(authSigners[msg.sender], "Not a signer");
         _;
     }
-    
+    // Modifiers for transaction error handling
     modifier txExists(uint256 _txIndex) {
         require(_txIndex < waitingTransactions.length, "Transaction does not exist");
         _;
@@ -70,7 +80,6 @@ contract FourtyTwoToTheMoonMultisig is ERC20, ERC20Permit {
         if(_required == 0 || _required > _signers.length) revert InvalidSignersCount();
         
         owner = msg.sender;
-        _mint(msg.sender, INITIAL_SUPPLY);
         
         for (uint256 i = 0; i < _signers.length; i++) {
             address signer = _signers[i];
@@ -84,11 +93,14 @@ contract FourtyTwoToTheMoonMultisig is ERC20, ERC20Permit {
         required = _required;
     }
     
-    function submitTransaction(address _to, uint256 _value)
+    // Record the transaction in the waitingTransactions array
+    function submitTransaction(address _to, uint256 _value, TransactionType _type)
         public
         onlySigner
         returns (uint256)
     {
+        if (_type == TransactionType.TRANSFER || _type == TransactionType.BURN)
+            require(balanceOf(address(_to)) >= _value, "Insuficient funds !");
         require(authSigners[msg.sender], "Not authorized");
         uint256 txIndex = waitingTransactions.length;
         
@@ -98,12 +110,16 @@ contract FourtyTwoToTheMoonMultisig is ERC20, ERC20Permit {
         transaction.value = _value;
         transaction.executed = false;
         transaction.numConfirmations = 0;
+        transaction.kind = _type;
+        transaction.from = msg.sender;
         
         emit TransactionSubmitted(txIndex, msg.sender, _to, _value);
         
         return txIndex;
     }
     
+    
+    // Confirm a transaction based on its index (only one signer at a time)
     function confirmTransaction(uint256 _txIndex)
         public
         onlySigner
@@ -118,6 +134,8 @@ contract FourtyTwoToTheMoonMultisig is ERC20, ERC20Permit {
         emit TransactionConfirmed(_txIndex, msg.sender);
     }
     
+    
+    // Execute the transaction if the required number of confirmations is reached
     function executeTransaction(uint256 _txIndex)
         public
         onlySigner
@@ -127,18 +145,20 @@ contract FourtyTwoToTheMoonMultisig is ERC20, ERC20Permit {
         Transaction storage transaction = waitingTransactions[_txIndex];
         
         if(transaction.numConfirmations < required) revert InsufficientConfirmations();
-        
-        
-        // Execute the transaction
-        (bool success, ) = transaction.to.call{value: transaction.value}(
-            transaction.data
-        );
-        if(!success) revert InvalidTransaction();
-        
+                
+        if (transaction.kind == TransactionType.MINT)
+            _mint(transaction.to, transaction.value);
+        else if (transaction.kind == TransactionType.BURN)
+            _burn(transaction.to, transaction.value);
+        else if (transaction.kind == TransactionType.TRANSFER)
+            _transfer(address(transaction.from), transaction.to, transaction.value);
+
         transaction.executed = true;
         emit TransactionExecuted(_txIndex);
     }
     
+    
+    // Base ERC20 functions
     function mint(address dest, uint256 amount) public onlyOwner {
         _mint(dest, amount);
     }
@@ -159,7 +179,6 @@ contract FourtyTwoToTheMoonMultisig is ERC20, ERC20Permit {
         returns (
             address to,
             uint256 value,
-            bytes memory data,
             bool executed,
             uint256 numConfirmations
         )
@@ -169,7 +188,6 @@ contract FourtyTwoToTheMoonMultisig is ERC20, ERC20Permit {
         return (
             transaction.to,
             transaction.value,
-            transaction.data,
             transaction.executed,
             transaction.numConfirmations
         );
@@ -183,13 +201,24 @@ contract FourtyTwoToTheMoonMultisig is ERC20, ERC20Permit {
         return signers.length;
     }
 
+
+    // Add and remove signers
     function addSigner(address _newSigner) external onlyOwner
     {
         authSigners[_newSigner] = true;
+        signers.push(_newSigner);
+
     }
 
     function removeSigner(address _signer) external onlyOwner
     {
         authSigners[_signer] = false;
+        for (uint256 i = 0; i < signers.length; i++) {
+            if (signers[i] == _signer) {
+                signers[i] = signers[signers.length - 1];
+                signers.pop();
+                break;
+            }
+        }
     }
 }

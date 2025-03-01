@@ -20,22 +20,10 @@ Decimals: 18
 
 Smart contract ownership management
 Token minting/burning capabilities
-<!-- Transfer and approval mechanisms
-Balance tracking -->
 
         Development Environment
 
-Network: BSC Testnet (ChainID: 97)
+Network: BSC Testnet
 
 Development Tools:
-    Remix IDE for Smart Contract development and deployment
-    Metamask for testing transactions
-
-
-    Testing Strategy
-All smart contract functionalities will be thoroughly tested on the BSC testnet before considering mainnet deployment, ensuring:
-<!-- 
-Security best practices
-Gas optimization
-Proper token economics implementation
-Transaction handling efficiency -->
+    Remix IDE for Smart Contract development, deployment and testing
