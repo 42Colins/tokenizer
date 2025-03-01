@@ -1,10 +1,10 @@
 Project: 42toTheMoon on BSC Testnet
         
-        Technical Overview
+Technical Overview
 
 This project aims to develop and deploy a custom token on the Binance Smart Chain (BSC) testnet, providing a secure and cost-effective environment for testing decentralized finance (DeFi) functionalities.
         
-        Project Scope
+Project Scope
 
 Our token implementation will utilize the BEP-20 standard, ensuring compatibility with the BSC ecosystem while leveraging the testnet's advantages for development and testing purposes.
 Key Features
@@ -16,14 +16,14 @@ Token Name: 42toTheMoon
 Symbol: 42Moon
 Decimals: 18
 
-        Core Functionalities
+Core Functionalities
 
 Smart contract ownership management
 Token minting/burning capabilities
 
-        Development Environment
+Development Environment
 
 Network: BSC Testnet
 
 Development Tools:
-    Remix IDE for Smart Contract development, deployment and testing
+Remix IDE for Smart Contract development, deployment and testing

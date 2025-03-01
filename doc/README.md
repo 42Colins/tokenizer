@@ -6,7 +6,7 @@ A multisig (short for "multiple signature") token is like a digital asset or pie
 
 ## How Does a Multisig Token Work?
 
-![Alt text](https://www.google.com/imgres?q=multisig%20token&imgurl=https%3A%2F%2Fbitpanda-academy.imgix.net%2F450037a5-144d-44ef-9db1-7fe7ce1f433d%2Fbitpanda-academy-expert-19-what-are-multisignature-wallets-infographic.png%3Fauto%3Dcompress%252Cformat%26fit%3Dmin%26fm%3Djpg%26q%3D80%26w%3D2100&imgrefurl=https%3A%2F%2Fwww.bitpanda.com%2Facademy%2Fen%2Flessons%2Fwhat-are-multi-signature-wallets-and-how-do-they-work&docid=lZ5CSwPPViCDOM&tbnid=KRd6lNpwR2_PnM&vet=12ahUKEwibt6jR9OiLAxXQKvsDHc48NjgQM3oECGUQAA..i&w=2100&h=2527&hcb=2&ved=2ahUKEwibt6jR9OiLAxXQKvsDHc48NjgQM3oECGUQAA)
+!(https://www.google.com/imgres?q=multisig%20token&imgurl=https%3A%2F%2Fbitpanda-academy.imgix.net%2F450037a5-144d-44ef-9db1-7fe7ce1f433d%2Fbitpanda-academy-expert-19-what-are-multisignature-wallets-infographic.png%3Fauto%3Dcompress%252Cformat%26fit%3Dmin%26fm%3Djpg%26q%3D80%26w%3D2100&imgrefurl=https%3A%2F%2Fwww.bitpanda.com%2Facademy%2Fen%2Flessons%2Fwhat-are-multi-signature-wallets-and-how-do-they-work&docid=lZ5CSwPPViCDOM&tbnid=KRd6lNpwR2_PnM&vet=12ahUKEwibt6jR9OiLAxXQKvsDHc48NjgQM3oECGUQAA..i&w=2100&h=2527&hcb=2&ved=2ahUKEwibt6jR9OiLAxXQKvsDHc48NjgQM3oECGUQAA)
 
 Imagine you have a valuable digital asset and you want to make sure it's extra secure:
 
@@ -35,4 +35,4 @@ Imagine you have a valuable digital asset and you want to make sure it's extra s
 - **Reduced Risk**: Protects against accidents, as multiple people must verify an action is correct.
 
 
-![Alt text](https://www.google.com/imgres?q=multisig%20token&imgurl=https%3A%2F%2Fbitpanda-academy.imgix.net%2F450037a5-144d-44ef-9db1-7fe7ce1f433d%2Fbitpanda-academy-expert-19-what-are-multisignature-wallets-infographic.png%3Fauto%3Dcompress%252Cformat%26fit%3Dmin%26fm%3Djpg%26q%3D80%26w%3D2100&imgrefurl=https%3A%2F%2Fwww.bitpanda.com%2Facademy%2Fen%2Flessons%2Fwhat-are-multi-signature-wallets-and-how-do-they-work&docid=lZ5CSwPPViCDOM&tbnid=KRd6lNpwR2_PnM&vet=12ahUKEwibt6jR9OiLAxXQKvsDHc48NjgQM3oECGUQAA..i&w=2100&h=2527&hcb=2&ved=2ahUKEwibt6jR9OiLAxXQKvsDHc48NjgQM3oECGUQAA)
+!(https://www.google.com/imgres?q=multisig%20token&imgurl=https%3A%2F%2Fbitpanda-academy.imgix.net%2F450037a5-144d-44ef-9db1-7fe7ce1f433d%2Fbitpanda-academy-expert-19-what-are-multisignature-wallets-infographic.png%3Fauto%3Dcompress%252Cformat%26fit%3Dmin%26fm%3Djpg%26q%3D80%26w%3D2100&imgrefurl=https%3A%2F%2Fwww.bitpanda.com%2Facademy%2Fen%2Flessons%2Fwhat-are-multi-signature-wallets-and-how-do-they-work&docid=lZ5CSwPPViCDOM&tbnid=KRd6lNpwR2_PnM&vet=12ahUKEwibt6jR9OiLAxXQKvsDHc48NjgQM3oECGUQAA..i&w=2100&h=2527&hcb=2&ved=2ahUKEwibt6jR9OiLAxXQKvsDHc48NjgQM3oECGUQAA)
