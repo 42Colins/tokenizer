@@ -14,15 +14,15 @@ BEP-20 Compliant Token
 Total Supply: 42 000 000
 Token Name: 42toTheMoon
 Symbol: 42Moon
-Decimals: 18
+Signers needed: 2 of 3
 
 Core Functionalities
 
+Multi signature funds management
 Smart contract ownership management
-Token minting/burning capabilities
+Token minting/burning/transfering capabilities
 
 Development Environment
-
 Network: BSC Testnet
 
 Development Tools:

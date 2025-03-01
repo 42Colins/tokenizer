@@ -4,7 +4,7 @@ Two Ways to Deploy Your Smart Contract
 
 Option 1: Deploy on a Test Environment
 
-This is perfect for beginners! You only need:
+This is perfect for beginners and for testing purposes ! You only need:
 
 Remix IDE - A free online tool where you can write and test your smart contract
 
@@ -12,7 +12,7 @@ Option 2: Deploy on an Actual Blockchain
 
 This is for when you're ready to go live. You'll need:
 
-Remix IDE - To write your contract
+Remix IDE - To develop the contract
 MetaMask wallet - To pay for the deployment
 Contract Address - The location of your contract on the blockchain
 Contract's ABI - Instructions that help you interact with your contract
